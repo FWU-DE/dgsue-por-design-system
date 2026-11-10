@@ -1,0 +1,3 @@
+/* Wie die globals.css einer App. source(none): nur das @source aus dem Paket zählt. */
+@import 'tailwindcss' source(none);
+@import '../../dist/styles/index.css';

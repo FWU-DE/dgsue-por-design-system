@@ -1,0 +1,73 @@
+/*
+ * Basis-Styles und CI-Elemente, die Komponenten voraussetzen.
+ * Bewusst NICHT enthalten (bleibt Entscheidung der App):
+ *   - Root-Schriftgröße (zielvereinbarung: html { font-size: 112.5% })
+ *   - Laden der Schrift (Open Sans per next/font)
+ *   - alte Utility-Klassen wie .btn-primary / .form-input
+ */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+}
+
+@layer components {
+  /*
+   * NRW-L-Ecken: Markenelement der NRW-CI.
+   * Grünes L unten links, rotes L oben rechts. Wird von <Card variant="accented"> genutzt,
+   * kann aber auf jedes Element gesetzt werden: class="nrw-l-corners nrw-l-corners-md".
+   */
+  .nrw-l-corners {
+    position: relative;
+  }
+
+  .nrw-l-corners::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: var(--nrw-corner-arm, 1.5rem);
+    height: var(--nrw-corner-arm, 1.5rem);
+    border-left: var(--nrw-corner-stroke, 0.375rem) solid var(--nrw-green-landesfarbe);
+    border-bottom: var(--nrw-corner-stroke, 0.375rem) solid var(--nrw-green-landesfarbe);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .nrw-l-corners::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: var(--nrw-corner-arm, 1.5rem);
+    height: var(--nrw-corner-arm, 1.5rem);
+    border-right: var(--nrw-corner-stroke, 0.375rem) solid var(--nrw-red-landesfarbe);
+    border-top: var(--nrw-corner-stroke, 0.375rem) solid var(--nrw-red-landesfarbe);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .nrw-l-corners-sm {
+    --nrw-corner-arm: 1rem;
+    --nrw-corner-stroke: 0.25rem;
+  }
+
+  .nrw-l-corners-md {
+    --nrw-corner-arm: 1.5rem;
+    --nrw-corner-stroke: 0.375rem;
+  }
+
+  .nrw-l-corners-lg {
+    --nrw-corner-arm: 2.5rem;
+    --nrw-corner-stroke: 0.625rem;
+  }
+}

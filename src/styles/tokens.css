@@ -1,0 +1,244 @@
+/*
+ * NRW Corporate Identity: Design-Tokens
+ *
+ * Quelle: zielvereinbarung/src/app/globals.css (Stand 2026-11). Muss nach
+ * `@import "tailwindcss";` eingebunden werden, damit `@theme` die Utilities
+ * (bg-primary, text-nrw-green, rounded-md, ...) erzeugt.
+ *
+ * Apps passen das Aussehen an, indem sie die semantischen Variablen
+ * (--primary, --radius, ...) in ihrer eigenen globals.css überschreiben,
+ * nicht durch Änderungen an dieser Datei.
+ */
+
+/* inline, damit .dark und Overrides auch unterhalb von :root greifen */
+@theme inline {
+  --spacing: 0.25rem;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* NRW Design Manual: Landes- und Zusatzfarben */
+  --color-nrw-green: var(--nrw-green-landesfarbe);
+  --color-nrw-green-accessible: var(--nrw-green-accessible);
+  --color-nrw-green-gras: var(--nrw-green-gras);
+  --color-nrw-green-petrol: var(--nrw-green-petrol);
+  --color-nrw-green-farn: var(--nrw-green-farn);
+  --color-nrw-red: var(--nrw-red-landesfarbe);
+  --color-nrw-red-tonstein: var(--nrw-red-tonstein);
+  --color-nrw-red-rosen: var(--nrw-red-rosen);
+  --color-nrw-red-purpur: var(--nrw-red-purpur);
+  --color-nrw-blue-bg-50: var(--nrw-blue-500-50);
+  --color-nrw-blue-bg-30: var(--nrw-blue-500-30);
+  --color-nrw-blue-bg-15: var(--nrw-blue-500-15);
+
+  --radius-xl: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+:root {
+  /* Semantische Tokens */
+  --background: var(--nrw-white);
+  --foreground: var(--nrw-blue-500);
+  --card: var(--nrw-white);
+  --card-foreground: var(--nrw-blue-500);
+  --popover: var(--nrw-white);
+  --popover-foreground: var(--nrw-neutral-950);
+  --primary: var(--nrw-blue-500);
+  --primary-foreground: var(--nrw-neutral-50);
+  --secondary: var(--nrw-red-500);
+  --secondary-foreground: var(--nrw-neutral-50);
+  --muted: var(--nrw-neutral-100);
+  --muted-foreground: var(--nrw-neutral-500);
+  --accent: var(--nrw-neutral-100);
+  --accent-foreground: var(--nrw-neutral-900);
+  --destructive: var(--nrw-red-600);
+  --destructive-foreground: var(--nrw-red-50);
+  --border: var(--nrw-neutral-200);
+  --input: var(--nrw-neutral-500);
+  /* Fokus muss sich deutlich vom normalen Rahmen abheben */
+  --ring: var(--nrw-blue-500);
+  /* Status (Badge, Card), Kontrast mit weißem Text mind. 4.5:1 */
+  --success: var(--nrw-green-accessible);
+  --success-foreground: var(--nrw-white);
+  --warning: var(--nrw-amber-700);
+  --warning-foreground: var(--nrw-white);
+  --info: var(--nrw-blue-400);
+  --info-foreground: var(--nrw-white);
+  --chart-1: var(--nrw-blue-400);
+  --chart-2: var(--nrw-blue-200);
+  --chart-3: var(--nrw-blue-50);
+  --chart-4: var(--nrw-red-300);
+  --chart-5: var(--nrw-red-100);
+  --sidebar: var(--nrw-neutral-50);
+  --sidebar-foreground: var(--nrw-neutral-950);
+  --sidebar-primary: var(--nrw-neutral-900);
+  --sidebar-primary-foreground: var(--nrw-neutral-50);
+  --sidebar-accent: var(--nrw-neutral-100);
+  --sidebar-accent-foreground: var(--nrw-neutral-900);
+  --sidebar-border: var(--nrw-neutral-200);
+  --sidebar-ring: var(--nrw-blue-500);
+
+  /* NRW-Palette: Rot (Skala für semantische Tokens) */
+  --nrw-red-50: #fefcfc;
+  --nrw-red-100: #ffdae1;
+  --nrw-red-200: #e6b5c5;
+  --nrw-red-300: #d4688c;
+  --nrw-red-400: #b02d59;
+  --nrw-red-500: #8a2446;
+  --nrw-red-600: #6a1431;
+
+  /* NRW Offizielle Rottöne (Landesfarbe + Zusatzfarben) */
+  --nrw-red-landesfarbe: #e2001a;
+  --nrw-red-tonstein: #e84155;
+  --nrw-red-rosen: #c50059;
+  --nrw-red-purpur: #882345;
+
+  /* Blau */
+  --nrw-blue-50: #c7dff9;
+  --nrw-blue-100: #98c6f6;
+  --nrw-blue-200: #66acf7;
+  --nrw-blue-300: #0579f6;
+  --nrw-blue-400: #004997;
+  --nrw-blue-500: #003064;
+  --nrw-blue-600: #001935;
+
+  /* Nachtblau mit Deckkraft */
+  --nrw-blue-500-50: rgba(0, 48, 100, 0.5);
+  --nrw-blue-500-30: rgba(0, 48, 100, 0.3);
+  --nrw-blue-500-15: rgba(0, 48, 100, 0.15);
+
+  /* Grün (Landesfarbe + Zusatzfarben) */
+  --nrw-green-landesfarbe: #009036;
+  --nrw-green-accessible: #007a2e; /* abgedunkelt für 4.5:1 Kontrast mit weißem Text */
+  --nrw-green-gras: #175e54;
+  --nrw-green-petrol: #009b74;
+  --nrw-green-farn: #76b828;
+
+  /* Warnfarbe, nicht aus dem NRW Design Manual (amber-700) */
+  --nrw-amber-700: #b45309;
+
+  /* Basis */
+  --nrw-black: #000000;
+  --nrw-white: #ffffff;
+  --nrw-transparent: rgba(255, 255, 255, 0);
+
+  /* Grau */
+  --nrw-gray-50: #f9fafb;
+  --nrw-gray-100: #f3f4f6;
+  --nrw-gray-200: #e5e7eb;
+  --nrw-gray-300: #d1d5db;
+  --nrw-gray-400: #9ca3af;
+  --nrw-gray-500: #6b7280;
+  --nrw-gray-600: #4b5563;
+  --nrw-gray-700: #374151;
+  --nrw-gray-800: #1f2937;
+  --nrw-gray-900: #111827;
+  --nrw-gray-950: #030712;
+
+  /* Neutral */
+  --nrw-neutral-50: #fafafa;
+  --nrw-neutral-100: #f5f5f5;
+  --nrw-neutral-200: #e5e5e5;
+  --nrw-neutral-300: #d4d4d4;
+  --nrw-neutral-400: #a3a3a3;
+  --nrw-neutral-500: #737373;
+  --nrw-neutral-600: #525252;
+  --nrw-neutral-700: #404040;
+  --nrw-neutral-800: #262626;
+  --nrw-neutral-900: #171717;
+  --nrw-neutral-950: #0a0a0a;
+
+  /* Typografie: Die App lädt Open Sans selbst (z. B. next/font/google). */
+  --font-sans:
+    'Open Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+  --tracking-normal: 0em;
+
+  /* Form */
+  --radius: 0.5rem;
+  /* Schatten: Tailwind-Standard. Eigene Werte gehören in @theme, nicht in :root. */
+}
+
+/* Dark Mode: aktiv, wenn ein Elternelement die Klasse .dark trägt */
+.dark {
+  --background: var(--nrw-neutral-950);
+  --foreground: var(--nrw-neutral-50);
+  --card: var(--nrw-neutral-900);
+  --card-foreground: var(--nrw-neutral-50);
+  --popover: var(--nrw-neutral-800);
+  --popover-foreground: var(--nrw-neutral-50);
+  --primary: var(--nrw-blue-400);
+  --primary-foreground: var(--nrw-neutral-50);
+  --secondary: var(--nrw-red-400);
+  --secondary-foreground: var(--nrw-neutral-50);
+  --muted: var(--nrw-neutral-800);
+  --muted-foreground: var(--nrw-neutral-400);
+  --accent: var(--nrw-neutral-700);
+  --accent-foreground: var(--nrw-neutral-50);
+  --destructive: var(--nrw-red-400);
+  --destructive-foreground: var(--nrw-red-50);
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: var(--nrw-blue-200);
+  --success: var(--nrw-green-accessible);
+  --success-foreground: var(--nrw-white);
+  --warning: var(--nrw-amber-700);
+  --warning-foreground: var(--nrw-white);
+  --info: var(--nrw-blue-400);
+  --info-foreground: var(--nrw-white);
+  --chart-1: var(--nrw-blue-300);
+  --chart-2: var(--nrw-blue-100);
+  --chart-3: var(--nrw-red-400);
+  --chart-4: var(--nrw-red-200);
+  --chart-5: var(--nrw-red-50);
+  --sidebar: var(--nrw-neutral-900);
+  --sidebar-foreground: var(--nrw-neutral-50);
+  --sidebar-primary: var(--nrw-blue-500);
+  --sidebar-primary-foreground: var(--nrw-neutral-50);
+  --sidebar-accent: var(--nrw-neutral-800);
+  --sidebar-accent-foreground: var(--nrw-neutral-50);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: var(--nrw-blue-200);
+}

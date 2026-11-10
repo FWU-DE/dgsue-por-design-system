@@ -1,0 +1,14 @@
+# Kein Monorepo: pnpm (ab v11) liest seine Einstellungen nur aus dieser Datei,
+# und sie braucht einen nicht-leeren `packages`-Eintrag.
+packages:
+  - '.'
+
+# Supply-Chain-Quarantäne wie in zielvereinbarung: keine Version installieren,
+# die jünger als 7 Tage ist.
+minimumReleaseAge: 10080
+
+# Install-Scripts von Abhängigkeiten sind standardmäßig blockiert.
+allowBuilds:
+  # Via @tailwindcss/cli. Liefert sein Binary als plattformspezifische optionale
+  # Abhängigkeit; das Install-Script ist nur ein Fallback und wird nicht gebraucht.
+  '@parcel/watcher': false

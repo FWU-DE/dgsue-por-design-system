@@ -1,0 +1,12 @@
+/*
+ * Einstiegspunkt für Apps. In der globals.css der App:
+ *
+ *   @import 'tailwindcss';
+ *   @import '@fwu-de/por-ui/styles.css';
+ *
+ * @source ist relativ zu dieser Datei und zeigt auf dist/components.
+ */
+@import './tokens.css';
+@import './base.css';
+
+@source '../components';

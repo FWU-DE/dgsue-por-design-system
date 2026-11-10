@@ -1,0 +1,91 @@
+{
+  "name": "@fwu-de/por-ui",
+  "version": "0.0.0",
+  "description": "Gemeinsame UI-Komponenten und Design-Tokens (NRW Corporate Identity) für zielvereinbarung und nrw-nutzerverwaltung",
+  "license": "UNLICENSED",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/FWU-DE/dgsue-por-design-system.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    "./styles.css": "./dist/styles/index.css",
+    "./tokens.css": "./dist/styles/tokens.css",
+    "./cn": {
+      "types": "./dist/lib/cn.d.ts",
+      "default": "./dist/lib/cn.js"
+    },
+    "./*": {
+      "types": "./dist/components/*.d.ts",
+      "default": "./dist/components/*.js"
+    }
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && cp -R src/styles dist/styles",
+    "typecheck": "tsc --noEmit",
+    "check:dist": "node scripts/check-dist.mjs",
+    "check:css": "node scripts/check-css.mjs",
+    "checks": "pnpm typecheck && pnpm test && pnpm build && pnpm check:dist && pnpm check:css && pnpm check:package",
+    "changeset": "changeset",
+    "release": "pnpm checks && changeset publish",
+    "test": "node --experimental-strip-types --no-warnings --test test/*.test.ts",
+    "check:package": "publint --strict && attw --pack --profile esm-only --exclude-entrypoints styles.css tokens.css"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.50.0",
+    "tailwindcss": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-hook-form": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.3.1",
+    "@radix-ui/react-checkbox": "^1.4.1",
+    "@radix-ui/react-collapsible": "^1.2.1",
+    "@radix-ui/react-dialog": "^1.3.1",
+    "@radix-ui/react-dropdown-menu": "^2.2.1",
+    "@radix-ui/react-label": "^2.1.17",
+    "@radix-ui/react-popover": "^1.3.1",
+    "@radix-ui/react-progress": "^1.2.1",
+    "@radix-ui/react-select": "^2.4.1",
+    "@radix-ui/react-slot": "^1.5.0",
+    "@radix-ui/react-tabs": "^1.2.1",
+    "@radix-ui/react-tooltip": "^1.4.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "embla-carousel-react": "^8.6.0",
+    "lucide-react": "^0.468.0",
+    "react-day-picker": "^9.14.0",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@changesets/cli": "^2.29.0",
+    "@tailwindcss/cli": "4.3.3",
+    "@types/node": "^22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "publint": "^0.3.25",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-hook-form": "7.90.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "6.0.3"
+  },
+  "packageManager": "pnpm@12.9.1"
+}
