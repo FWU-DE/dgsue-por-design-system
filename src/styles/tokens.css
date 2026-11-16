@@ -201,6 +201,99 @@
   /* Schatten: Tailwind-Standard. Eigene Werte gehören in @theme, nicht in :root. */
 }
 
+/*
+ * Komponenten-Tokens
+ *
+ * Maße und Farben, in denen sich die Apps unterscheiden dürfen. Die Werte hier sind
+ * der Standard (Stand zielvereinbarung). Eine App überschreibt sie in ihrer
+ * globals.css nach dem Import des Pakets in einem eigenen :root-Block.
+ *
+ * `initial` als Wert heißt: Die Komponente setzt die Eigenschaft nicht, sie erbt sie
+ * vom Elternelement (z. B. Schriftgröße oder Textfarbe).
+ *
+ * Auch auf .dark, damit Verweise wie var(--success) dort neu aufgelöst werden. Eine App,
+ * die .dark nutzt und hier etwas überschreibt, muss das deshalb auch für .dark tun.
+ */
+:root,
+.dark {
+  /* Schrift in Bedienelementen: Button, Input, Select, Textarea, Label, Table, CardDescription */
+  --por-text-ui: 1rem;
+  --por-text-ui-leading: 1.5;
+  /* Button size="sm" */
+  --por-text-ui-sm: 0.875rem;
+  --por-text-ui-sm-leading: calc(1.25 / 0.875);
+  /* FormDescription, FormMessage */
+  --por-text-hint: 0.875rem;
+  --por-text-hint-leading: calc(1.25 / 0.875);
+
+  /* Höhe von Button (default, icon), Input und SelectTrigger; Button size="lg" */
+  --por-control-height: 2.5rem;
+  --por-control-height-lg: 2.75rem;
+
+  /* Fokusring von Button und Checkbox */
+  --por-focus-ring-width: 2px;
+  --por-focus-ring-offset: 2px;
+
+  /* Textfarbe in Input, Textarea und SelectTrigger; Farbe des Select-Pfeils */
+  --por-input-foreground: var(--popover-foreground);
+  --por-select-icon: var(--muted-foreground);
+
+  --por-button-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+  --por-checkbox-size: 1.25rem;
+  --por-checkbox-border-width: 2px;
+  --por-checkbox-border: var(--primary);
+
+  --por-badge-radius: calc(infinity * 1px);
+  --por-badge-success: var(--success);
+  --por-badge-success-foreground: var(--success-foreground);
+  --por-badge-info: var(--info);
+  --por-badge-info-foreground: var(--info-foreground);
+  --por-badge-warning: var(--warning);
+  --por-badge-warning-foreground: var(--warning-foreground);
+  --por-badge-error: color-mix(in oklab, var(--destructive) 10%, transparent);
+  --por-badge-error-foreground: var(--destructive);
+
+  --por-card-radius: calc(var(--radius) - 2px);
+  --por-card-title-size: 1.125rem;
+  --por-card-title-gap: 0.5rem;
+  --por-card-content-padding: 1.5rem;
+  --por-card-success: color-mix(in oklab, var(--success) 5%, transparent);
+  --por-card-success-foreground: var(--foreground);
+  --por-card-success-border: color-mix(in oklab, var(--success) 40%, transparent);
+  --por-card-warning: color-mix(in oklab, var(--warning) 5%, transparent);
+  --por-card-warning-foreground: var(--foreground);
+  --por-card-warning-border: color-mix(in oklab, var(--warning) 40%, transparent);
+  --por-card-error: color-mix(in oklab, var(--destructive) 5%, transparent);
+  --por-card-error-foreground: var(--destructive);
+  --por-card-error-border: color-mix(in oklab, var(--destructive) 20%, transparent);
+  --por-card-info: color-mix(in oklab, var(--info) 5%, transparent);
+  --por-card-info-foreground: var(--foreground);
+  --por-card-info-border: color-mix(in oklab, var(--info) 40%, transparent);
+
+  --por-alert-info: #eaf6fb;
+  --por-alert-info-foreground: #0e3a4d;
+  --por-alert-info-border: #3b9fc4;
+  --por-alert-info-icon: #1f84aa;
+  --por-alert-warning: #fdf3e7;
+  --por-alert-warning-foreground: #1c2834;
+  --por-alert-warning-border: #d9822b;
+  --por-alert-warning-icon: #b26a00;
+
+  /* Kopfzeile von Table */
+  --por-table-head: var(--primary);
+  --por-table-head-foreground: var(--primary-foreground);
+  /* Textfarbe der ganzen Kopfzeile (thead), --por-table-head-foreground die der Zellen (th) */
+  --por-table-header-foreground: var(--primary-foreground);
+  --por-table-head-weight: 600;
+  --por-table-head-row-hover: var(--primary);
+  --por-table-head-icon-hover: color-mix(in oklab, var(--primary-foreground) 80%, transparent);
+
+  /* FormLabel und FormMessage im Fehlerfall */
+  --por-form-label-error-weight: 600;
+  --por-form-message-weight: 600;
+}
+
 /* Dark Mode: aktiv, wenn ein Elternelement die Klasse .dark trägt */
 .dark {
   --background: var(--nrw-neutral-950);

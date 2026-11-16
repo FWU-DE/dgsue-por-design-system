@@ -20,7 +20,7 @@ try {
   // Je eine Klasse, die nur in einer Komponente vorkommt.
   const expected = [
     '.bg-primary', // button
-    '.bg-success', // badge (Status-Tokens)
+    '.bg-\\(--por-badge-success\\)', // badge (Komponenten-Tokens)
     '.origin-\\(--radix-popover-content-transform-origin\\)', // popover
     '.min-w-\\(--cell-size\\)', // calendar
   ];

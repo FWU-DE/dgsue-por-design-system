@@ -19,14 +19,14 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      'flex h-10 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-base text-popover-foreground shadow-xs ring-offset-background data-[placeholder]:text-muted-foreground focus:outline-none focus:border-ring focus-visible:ring-1 focus-visible:ring-ring aria-[invalid=true]:focus-visible:ring-destructive disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 aria-[invalid=true]:border-2 aria-[invalid=true]:border-destructive',
+      'flex h-(--por-control-height) w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-(length:--por-text-ui) leading-(--por-text-ui-leading) text-(--por-input-foreground) shadow-xs ring-offset-background data-[placeholder]:text-muted-foreground focus:outline-none focus:border-ring focus-visible:ring-1 focus-visible:ring-ring aria-[invalid=true]:focus-visible:ring-destructive disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 aria-[invalid=true]:border-2 aria-[invalid=true]:border-destructive',
       className,
     )}
     {...props}
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground" />
+      <ChevronDown className="h-4 w-4 shrink-0 text-(--por-select-icon)" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));

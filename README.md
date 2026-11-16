@@ -11,7 +11,7 @@ Basis sind die shadcn/ui-Komponenten (Stil `new-york`) auf Radix, Tailwind CSS v
 | Import | Exporte |
 | --- | --- |
 | `@fwu-de/por-ui/accordion` | `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent` |
-| `@fwu-de/por-ui/alert` | `Alert`, `AlertTitle`, `AlertDescription` |
+| `@fwu-de/por-ui/alert` | `Alert` (Varianten `default`, `destructive`, `info`, `warning`), `AlertTitle`, `AlertDescription` |
 | `@fwu-de/por-ui/alert-dialog-simple` | `AlertDialogSimple` |
 | `@fwu-de/por-ui/badge` | `Badge`, `badgeVariants` |
 | `@fwu-de/por-ui/button` | `Button`, `buttonVariants` |
@@ -105,6 +105,58 @@ RUN --mount=type=secret,id=node_auth_token,env=NODE_AUTH_TOKEN,required=true \
 
 Beim Build: `docker/build-push-action` mit `secrets: node_auth_token=${{ secrets.GITHUB_TOKEN }}` bzw. `docker build --secret id=node_auth_token,env=NODE_AUTH_TOKEN ...`.
 
+### Übergangsweise: Paket als Datei statt aus der Registry
+
+Solange das Repo nicht in der Organisation FWU-DE liegt, kann das Paket nicht unter `@fwu-de` in GitHub Packages veröffentlicht werden. Bis dahin liegt das gebaute Paket als Datei im App-Repo:
+
+```bash
+# im Design-System
+pnpm checks && pnpm pack --pack-destination ../<app>/vendor
+# in der App
+pnpm add ./vendor/fwu-de-por-ui-<version>.tgz
+```
+
+Im Dockerfile der App muss `vendor/` vor `pnpm install` kopiert werden (`COPY package.json pnpm-lock.yaml ./` und `COPY vendor ./vendor`). Ein Token braucht es nicht. Schritt 1 und 5 oben entfallen. Später wird nur die Abhängigkeit in der `package.json` auf die Registry-Version umgestellt, Imports und Styles bleiben gleich.
+
+Wichtig: Bei jeder Änderung `version` in der `package.json` erhöhen (bzw. `pnpm changeset version`). Sonst hat die neue Datei denselben Namen, und pnpm meldet einen Prüfsummenfehler.
+
+## Aussehen pro App anpassen
+
+Größen und Farben, in denen sich die Apps unterscheiden, sind Komponenten-Tokens (`--por-*`, Liste mit Standardwerten in [`src/styles/tokens.css`](src/styles/tokens.css)). Die App überschreibt sie in ihrer `globals.css` nach dem Import:
+
+```css
+@import 'tailwindcss';
+@import '@fwu-de/por-ui/styles.css';
+
+:root {
+  --por-control-height: 2.25rem; /* Button, Input, Select: h-9 statt h-10 */
+  --por-text-ui: 0.875rem; /* text-sm statt text-base */
+  --por-text-ui-leading: calc(1.25 / 0.875);
+  --por-card-title-size: initial; /* erbt die Schriftgröße */
+}
+```
+
+`initial` heißt: Die Komponente setzt die Eigenschaft nicht, sie wird vom Elternelement geerbt.
+
+| Token | Wirkt auf |
+| --- | --- |
+| `--por-text-ui`, `--por-text-ui-leading` | Schrift in Button, Input/Textarea (ab `md`), Select, Label, Table, CardDescription |
+| `--por-text-ui-sm`, `--por-text-ui-sm-leading` | Button `size="sm"` |
+| `--por-text-hint`, `--por-text-hint-leading` | FormDescription, FormMessage |
+| `--por-control-height`, `--por-control-height-lg` | Button (default, icon, lg), Input, SelectTrigger |
+| `--por-focus-ring-width`, `--por-focus-ring-offset` | Fokusring von Button und Checkbox |
+| `--por-input-foreground`, `--por-select-icon` | Textfarbe von Input, Textarea, Select; Select-Pfeil |
+| `--por-button-shadow` | Schatten von Button (außer ghost, link) |
+| `--por-checkbox-size`, `--por-checkbox-border-width`, `--por-checkbox-border` | Checkbox |
+| `--por-badge-radius`, `--por-badge-{success,info,warning,error}[-foreground]` | Badge |
+| `--por-card-radius`, `--por-card-title-size`, `--por-card-title-gap`, `--por-card-content-padding` | Card, CardTitle, CardContent |
+| `--por-card-{success,warning,error,info}[-foreground,-border]` | Card-Varianten |
+| `--por-alert-{info,warning}[-foreground,-border,-icon]` | Alert-Varianten `info` und `warning` |
+| `--por-table-head`, `--por-table-head-foreground`, `--por-table-header-foreground`, `--por-table-head-weight`, `--por-table-head-row-hover`, `--por-table-head-icon-hover` | Kopfzeile von Table |
+| `--por-form-label-error-weight`, `--por-form-message-weight` | FormLabel und FormMessage bei Fehlern |
+
+Neue Unterschiede zwischen den Apps kommen als weiteres Token dazu, nicht als App-Kopie der Komponente.
+
 ## Entwicklung
 
 ```bash
@@ -149,29 +201,12 @@ Grundlage ist der Stand aus **zielvereinbarung** (`main`). Abweichungen davon:
 | `table` | `TableHead` mit Prop `iconLabel` für den Icon-Button |
 | `checkbox` | `indeterminate` wird auch mit `defaultChecked` angezeigt |
 | `searchable-select` | Pfeiltasten führen aus dem Suchfeld in die Liste; Suche findet `Köln` auch über `Koln` |
+| `searchable-select` | `showSearchIcon`, `value=""` zeigt den Platzhalter, kein Absturz bei fehlendem Label (aus nrw-nutzerverwaltung) |
+| `alert` | Varianten `info` und `warning` aus nrw-nutzerverwaltung |
 | `carousel` | Screenreader-Texte auf Deutsch |
 | Tokens | `.dark`-Variante ist klassenbasiert (`@custom-variant dark`), passend zu den `.dark`-Tokens. Vorher griffen `dark:`-Utilities über die System-Einstellung, die Farben aber nicht |
 
 Alle übrigen Komponenten und alle Tokens sind identisch mit zielvereinbarung.
-
-**Was sich für nrw-nutzerverwaltung sichtbar ändert** (vor dem Merge prüfen, z. B. mit Playwright-Screenshots):
-
-- Schrift `text-base` statt `text-sm` bei Button, Input, Select, Textarea, Label, Table, `CardDescription`
-- Button: `default` `h-10` statt `h-9`, `lg` `h-11`, `icon` `h-10 w-10`, `sm` mit `text-sm` statt `text-xs`, Schatten `shadow`/`shadow-sm` statt `shadow-xs`
-- Input, Select, Textarea: `h-10`; Fokus über Rahmenfarbe statt `ring`; Fehlerzustand `aria-[invalid=true]` mit rotem 2px-Rahmen; `md:text-sm` entfällt
-- Form: `FormLabel` mit Prop `required` (Sternchen) und `font-semibold` bei Fehler; `FormDescription`/`FormMessage` `text-sm` statt `text-[0.8rem]`
-- Card: `rounded-md`; `CardContent` `px-6 pb-6`; `CardTitle` `text-lg`; neue Variante `accented` (NRW-L-Ecken); `success/warning/error/info` nutzen Tokens statt Tailwind-Grün/Amber/Rot/Blau
-- Badge: rund (`rounded-full`), Status-Varianten in NRW-Farben
-- Table: Kopfzeile in `bg-primary` mit heller Schrift
-- Checkbox: `h-5 w-5` mit `border-2 border-primary`
-- Accordion: Trigger ohne Hover-Unterstreichung, lange Titel werden gekürzt
-- Calendar: deutsche Locale
-- **Dialog: `onOpenAutoFocus` verhindert, dass der Fokus beim Öffnen in den Dialog springt.** Das kommt aus zielvereinbarung, ist für Tastatur- und Screenreader-Nutzer aber ungünstig und sollte geprüft werden
-- Fokus: `--ring` ist Nachtblau (`--nrw-blue-500`, dunkel `--nrw-blue-200`) statt `neutral-400`. Inputs, Select und Textarea zeigen im Fokus einen 2px-Rahmen, Button und Checkbox einen 2px-Ring mit Abstand. Vorher war der Fokus-Rahmen heller als der normale Rahmen (WCAG 1.4.11)
-- Status-Farben: neue Tokens `--success`, `--warning`, `--info`. Badge `success`/`warning`/`info` sind damit vollflächig grün/amber/blau, Card-Varianten haben einen getönten Rahmen. Vorher waren `info` und `warning` (Badge) bzw. `success`, `warning` und `info` (Card) gleich grau. `--warning` (`#b45309`) ist keine NRW-Landesfarbe und sollte mit dem Design abgestimmt werden
-- Date-/Month-Picker: `h-10` und `text-base` wie `Input` (vorher `h-9`, `md:text-sm`)
-- Dialog-Footer: Abstand per `gap-2`, auch untereinander auf kleinen Bildschirmen
-- Tokens: `--nrw-blue-500` ist `#003064` (nrw: `#003166`), `--input` ist `neutral-500` (nrw: `neutral-200`). Außerdem korrigiert: `--nrw-red-100` war in nrw ein ungültiger Farbwert (`#FF0DAE1`)
 
 **Bewusst nicht im Paket** (bleibt App-Entscheidung):
 

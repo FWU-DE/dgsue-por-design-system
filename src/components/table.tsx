@@ -5,7 +5,7 @@ import { cn } from '../lib/cn.ts';
 const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
   ({ className, ...props }, ref) => (
     <div className="relative w-full overflow-auto">
-      <table ref={ref} className={cn('w-full caption-bottom text-base', className)} {...props} />
+      <table ref={ref} className={cn('w-full caption-bottom text-(length:--por-text-ui) leading-(--por-text-ui-leading)', className)} {...props} />
     </div>
   ),
 );
@@ -19,7 +19,7 @@ const TableHeader = React.forwardRef<
   <thead
     ref={ref}
     className={cn(
-      '[&_tr]:border-b [&_tr]:hover:!bg-primary bg-primary text-primary-foreground',
+      '[&_tr]:border-b [&_tr]:hover:bg-(--por-table-head-row-hover)! bg-(--por-table-head) text-(--por-table-header-foreground)',
       className,
     )}
     {...props}
@@ -76,7 +76,7 @@ const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
   ({ className, icon, onIconClick, iconLabel, children, ...props }, ref) => (
     <th
       ref={ref}
-      className={cn('h-10 px-2 text-left font-semibold text-primary-foreground', className)}
+      className={cn('h-10 px-2 text-left font-(weight:--por-table-head-weight) text-(--por-table-head-foreground)', className)}
       {...props}
     >
       <div className="flex gap-2">
@@ -87,7 +87,7 @@ const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
             type="button"
             onClick={onIconClick}
             aria-label={iconLabel}
-            className="cursor-pointer rounded-sm p-0 hover:text-primary-foreground/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground"
+            className="cursor-pointer rounded-sm p-0 hover:text-(--por-table-head-icon-hover) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--por-table-head-foreground)"
           >
             {icon}
           </button>

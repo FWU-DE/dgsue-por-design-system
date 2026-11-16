@@ -36,6 +36,8 @@ type SearchableSelectProps = {
   /** Classes for the trigger, e.g. a fixed width in a filter bar. */
   className?: string;
   'aria-label'?: string;
+  /** Lupe im geschlossenen Feld; aus, wo das Feld wie ein normales Select aussehen soll. */
+  showSearchIcon?: boolean;
 };
 
 // Select with an embedded filter input, same interaction as the school picker.
@@ -50,6 +52,7 @@ export function SearchableSelect({
   disabled = false,
   className,
   'aria-label': ariaLabel,
+  showSearchIcon = true,
 }: SearchableSelectProps) {
   const [query, setQuery] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -60,10 +63,14 @@ export function SearchableSelect({
   // Given children, `SelectValue` shows them instead of the item's content, which keeps
   // indentation and details out of the closed trigger.
   const selected = options.find((option) => option.value === value);
+  // Nie undefined: Sonst rendert Radix den Text des Eintrags selbst in den Trigger, und
+  // React stürzt ab (removeChild), sobald das Label diesen Knoten übernimmt.
+  const selectedLabel = selected?.label ?? null;
 
   return (
     <Select
-      value={value}
+      // Radix zeigt den Platzhalter nur bei undefined; '' heißt: nichts ausgewählt.
+      value={value || undefined}
       onValueChange={onValueChange}
       disabled={disabled}
       // Radix moves focus to the list on open, so the input has to take it back
@@ -78,9 +85,9 @@ export function SearchableSelect({
         aria-label={ariaLabel}
         className={cn('w-full flex gap-2 min-h-[44px]', className)}
       >
-        <Search className="w-4 h-4 text-primary shrink-0" />
+        {showSearchIcon && <Search className="w-4 h-4 text-primary shrink-0" />}
         <SelectValue placeholder={placeholder} className="flex-1 text-left">
-          {selected?.label}
+          {selectedLabel}
         </SelectValue>
       </SelectTrigger>
       {/* Cap at 300px, but never past the viewport edge, so the list scrolls
