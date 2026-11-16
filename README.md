@@ -8,39 +8,66 @@ Basis sind die shadcn/ui-Komponenten (Stil `new-york`) auf Radix, Tailwind CSS v
 
 ## Komponenten
 
+Die Quelldateien liegen nach Herkunft getrennt in drei Ordnern, entsprechend der Gliederung im Figma „ShadCN NRW“. Die Import-Pfade sind davon unabhängig: immer `@fwu-de/por-ui/<name>`.
+
+### shadcn-Standard (`src/components/shadcn/`)
+
+Komponenten aus shadcn/ui (Stil `new-york`). Geändert sind Tokens, deutsche Screenreader-Texte und Fehlerbehebungen. Die API ist nur an wenigen Stellen erweitert und bleibt rückwärtskompatibel: Button-Größe `md`, `Checkbox` mit `indeterminate`, `FormLabel` mit `required`, `TableHead` mit Icon. Details stehen unter [Herkunft](#herkunft-und-unterschiede-zu-den-apps). Figma: Seiten unter „Components shadcn“.
+
 | Import | Exporte |
 | --- | --- |
 | `@fwu-de/por-ui/accordion` | `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent` |
-| `@fwu-de/por-ui/alert` | `Alert` (Varianten `default`, `destructive`, `info`, `warning`), `AlertTitle`, `AlertDescription` |
-| `@fwu-de/por-ui/alert-dialog-simple` | `AlertDialogSimple` |
-| `@fwu-de/por-ui/badge` | `Badge`, `badgeVariants` |
 | `@fwu-de/por-ui/button` | `Button`, `buttonVariants` |
 | `@fwu-de/por-ui/calendar` | `Calendar`, `CalendarDayButton` (Locale `de`) |
-| `@fwu-de/por-ui/card` | `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
 | `@fwu-de/por-ui/carousel` | `Carousel`, `CarouselContent`, `CarouselItem`, `CarouselPrevious`, `CarouselNext`, `CarouselApi` |
 | `@fwu-de/por-ui/checkbox` | `Checkbox` (inkl. `checked="indeterminate"`) |
 | `@fwu-de/por-ui/collapsible` | `Collapsible`, `CollapsibleTrigger`, `CollapsibleContent` |
 | `@fwu-de/por-ui/command` | `Command`, `CommandDialog`, `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`, `CommandItem`, ... |
-| `@fwu-de/por-ui/confirmation-dialog` | `ConfirmationDialog` |
-| `@fwu-de/por-ui/date-picker-input` | `DatePickerInput` |
 | `@fwu-de/por-ui/dialog` | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogFooter`, `DialogTitle`, `DialogDescription`, `DialogClose`, `DialogPortal`, `DialogOverlay` |
 | `@fwu-de/por-ui/dropdown-menu` | `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem`, ... |
 | `@fwu-de/por-ui/form` | `Form`, `FormField`, `FormItem`, `FormLabel` (`required`), `FormControl`, `FormDescription`, `FormMessage`, `useFormField` (braucht `react-hook-form`) |
 | `@fwu-de/por-ui/input` | `Input` |
 | `@fwu-de/por-ui/label` | `Label` |
-| `@fwu-de/por-ui/month-picker-input` | `MonthPickerInput` |
 | `@fwu-de/por-ui/popover` | `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverAnchor` |
-| `@fwu-de/por-ui/progress` | `Progress` |
-| `@fwu-de/por-ui/searchable-select` | `SearchableSelect`, `SearchableOption`, `matchesQuery` |
 | `@fwu-de/por-ui/select` | `Select`, `SelectTrigger`, `SelectValue`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectLabel`, `SelectSeparator`, ... |
 | `@fwu-de/por-ui/sheet` | `Sheet`, `SheetTrigger`, `SheetContent`, `SheetHeader`, `SheetFooter`, `SheetTitle`, `SheetDescription`, ... |
 | `@fwu-de/por-ui/table` | `Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead` (`icon`, `onIconClick`), `TableCell`, `TableCaption` |
 | `@fwu-de/por-ui/tabs` | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent` |
 | `@fwu-de/por-ui/textarea` | `Textarea` |
-| `@fwu-de/por-ui/textrahmen` | `Textrahmen` (Fläche mit NRW-L-Ecken) |
 | `@fwu-de/por-ui/tooltip` | `Tooltip`, `TooltipTrigger`, `TooltipContent`, `TooltipProvider` |
+
+### shadcn angepasst (`src/components/angepasst/`)
+
+shadcn-Komponenten mit eigenen Varianten oder eigenem Aufbau für NRW (z. B. Status-Varianten, NRW-L-Ecken). Figma: „shadcn – angepasst“.
+
+| Import | Exporte |
+| --- | --- |
+| `@fwu-de/por-ui/alert` | `Alert` (Varianten `default`, `destructive`, `info`, `warning`), `AlertTitle`, `AlertDescription` |
+| `@fwu-de/por-ui/badge` | `Badge`, `badgeVariants` |
+| `@fwu-de/por-ui/card` | `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
+| `@fwu-de/por-ui/progress` | `Progress` |
+
+### Eigene Komponenten (`src/components/eigene/`)
+
+Nicht in shadcn/ui enthalten, aus shadcn-Komponenten zusammengesetzt.
+
+| Import | Exporte |
+| --- | --- |
+| `@fwu-de/por-ui/alert-dialog-simple` | `AlertDialogSimple` |
+| `@fwu-de/por-ui/confirmation-dialog` | `ConfirmationDialog` |
+| `@fwu-de/por-ui/date-picker-input` | `DatePickerInput` |
+| `@fwu-de/por-ui/month-picker-input` | `MonthPickerInput` |
+| `@fwu-de/por-ui/searchable-select` | `SearchableSelect`, `SearchableOption`, `matchesQuery` |
+| `@fwu-de/por-ui/textrahmen` | `Textrahmen` (Fläche mit NRW-L-Ecken) |
+
+### Hilfsfunktionen und Styles
+
+| Import | Exporte |
+| --- | --- |
 | `@fwu-de/por-ui/cn` | `cn()` (clsx + tailwind-merge) |
 | `@fwu-de/por-ui/styles.css` | Tokens + Basis-Styles + NRW-L-Ecken |
+
+Neue Komponente: in den passenden Ordner legen und in `package.json` unter `exports` eintragen (`pnpm check:dist` meldet fehlende Einträge). Wird eine shadcn-Komponente über Tokens und Texte hinaus verändert (neue Varianten, anderer Aufbau), zieht sie nach `angepasst/` um.
 
 ## Einbinden in eine App
 
@@ -144,6 +171,7 @@ Größen und Farben, in denen sich die Apps unterscheiden, sind Komponenten-Toke
 | `--por-text-ui-sm`, `--por-text-ui-sm-leading` | Button `size="sm"` |
 | `--por-text-hint`, `--por-text-hint-leading` | FormDescription, FormMessage |
 | `--por-control-height`, `--por-control-height-lg` | Button (default, icon, lg), Input, SelectTrigger |
+| `--por-picker-height`, `--por-picker-text`, `--por-picker-text-leading` | DatePickerInput, MonthPickerInput (Standard: wie Input) |
 | `--por-focus-ring-width`, `--por-focus-ring-offset` | Fokusring von Button und Checkbox |
 | `--por-input-foreground`, `--por-select-icon` | Textfarbe von Input, Textarea, Select; Select-Pfeil |
 | `--por-button-shadow` | Schatten von Button (außer ghost, link) |
@@ -164,7 +192,7 @@ pnpm install
 pnpm checks      # Typecheck, Tests, Build, Prüfung des Build-Ergebnisses, Tailwind-Kompilierung, publint/attw
 ```
 
-- Komponenten liegen in `src/components/`, Tokens in `src/styles/tokens.css`.
+- Komponenten liegen in `src/components/shadcn/`, `angepasst/` und `eigene/` (siehe [Komponenten](#komponenten)), Tokens in `src/styles/tokens.css`.
 - **Imports innerhalb des Pakets immer relativ und mit Endung** (`'../lib/cn.ts'`, `'./label.tsx'`). Der Build schreibt sie auf `.js` um.
 - Kein Import von `next`: Links laufen über `<Button asChild><Link .../></Button>`. So läuft das Paket mit Next 15 und 16.
 - Komponenten mit State, Effects oder Radix-Primitives brauchen `'use client'` in der ersten Zeile. `pnpm check:dist` prüft, dass die Direktive den Build übersteht.

@@ -8,8 +8,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from './dialog.tsx';
-import { Button } from './button.tsx';
+} from '../shadcn/dialog.tsx';
+import { Button } from '../shadcn/button.tsx';
 import { AlertTriangle, Info } from 'lucide-react';
 
 type AlertDialogSimpleProps = {

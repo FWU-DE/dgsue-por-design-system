@@ -229,6 +229,10 @@
   /* Höhe von Button (default, icon), Input und SelectTrigger; Button size="lg" */
   --por-control-height: 2.5rem;
   --por-control-height-lg: 2.75rem;
+  /* DatePickerInput und MonthPickerInput; Standard wie Input */
+  --por-picker-height: var(--por-control-height);
+  --por-picker-text: var(--por-text-ui);
+  --por-picker-text-leading: var(--por-text-ui-leading);
 
   /* Fokusring von Button und Checkbox */
   --por-focus-ring-width: 2px;
@@ -256,7 +260,7 @@
 
   --por-card-radius: calc(var(--radius) - 2px);
   --por-card-title-size: 1.125rem;
-  --por-card-title-gap: 0.5rem;
+  --por-card-title-gap: 1rem;
   --por-card-content-padding: 1.5rem;
   --por-card-success: color-mix(in oklab, var(--success) 5%, transparent);
   --por-card-success-foreground: var(--foreground);

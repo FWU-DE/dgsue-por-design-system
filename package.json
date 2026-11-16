@@ -1,6 +1,6 @@
 {
   "name": "@fwu-de/por-ui",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "Gemeinsame UI-Komponenten und Design-Tokens (NRW Corporate Identity) für zielvereinbarung und nrw-nutzerverwaltung",
   "license": "UNLICENSED",
   "type": "module",
@@ -25,9 +25,121 @@
       "types": "./dist/lib/cn.d.ts",
       "default": "./dist/lib/cn.js"
     },
-    "./*": {
-      "types": "./dist/components/*.d.ts",
-      "default": "./dist/components/*.js"
+    "./accordion": {
+      "types": "./dist/components/shadcn/accordion.d.ts",
+      "default": "./dist/components/shadcn/accordion.js"
+    },
+    "./button": {
+      "types": "./dist/components/shadcn/button.d.ts",
+      "default": "./dist/components/shadcn/button.js"
+    },
+    "./calendar": {
+      "types": "./dist/components/shadcn/calendar.d.ts",
+      "default": "./dist/components/shadcn/calendar.js"
+    },
+    "./carousel": {
+      "types": "./dist/components/shadcn/carousel.d.ts",
+      "default": "./dist/components/shadcn/carousel.js"
+    },
+    "./checkbox": {
+      "types": "./dist/components/shadcn/checkbox.d.ts",
+      "default": "./dist/components/shadcn/checkbox.js"
+    },
+    "./collapsible": {
+      "types": "./dist/components/shadcn/collapsible.d.ts",
+      "default": "./dist/components/shadcn/collapsible.js"
+    },
+    "./command": {
+      "types": "./dist/components/shadcn/command.d.ts",
+      "default": "./dist/components/shadcn/command.js"
+    },
+    "./dialog": {
+      "types": "./dist/components/shadcn/dialog.d.ts",
+      "default": "./dist/components/shadcn/dialog.js"
+    },
+    "./dropdown-menu": {
+      "types": "./dist/components/shadcn/dropdown-menu.d.ts",
+      "default": "./dist/components/shadcn/dropdown-menu.js"
+    },
+    "./form": {
+      "types": "./dist/components/shadcn/form.d.ts",
+      "default": "./dist/components/shadcn/form.js"
+    },
+    "./input": {
+      "types": "./dist/components/shadcn/input.d.ts",
+      "default": "./dist/components/shadcn/input.js"
+    },
+    "./label": {
+      "types": "./dist/components/shadcn/label.d.ts",
+      "default": "./dist/components/shadcn/label.js"
+    },
+    "./popover": {
+      "types": "./dist/components/shadcn/popover.d.ts",
+      "default": "./dist/components/shadcn/popover.js"
+    },
+    "./select": {
+      "types": "./dist/components/shadcn/select.d.ts",
+      "default": "./dist/components/shadcn/select.js"
+    },
+    "./sheet": {
+      "types": "./dist/components/shadcn/sheet.d.ts",
+      "default": "./dist/components/shadcn/sheet.js"
+    },
+    "./table": {
+      "types": "./dist/components/shadcn/table.d.ts",
+      "default": "./dist/components/shadcn/table.js"
+    },
+    "./tabs": {
+      "types": "./dist/components/shadcn/tabs.d.ts",
+      "default": "./dist/components/shadcn/tabs.js"
+    },
+    "./textarea": {
+      "types": "./dist/components/shadcn/textarea.d.ts",
+      "default": "./dist/components/shadcn/textarea.js"
+    },
+    "./tooltip": {
+      "types": "./dist/components/shadcn/tooltip.d.ts",
+      "default": "./dist/components/shadcn/tooltip.js"
+    },
+    "./alert": {
+      "types": "./dist/components/angepasst/alert.d.ts",
+      "default": "./dist/components/angepasst/alert.js"
+    },
+    "./badge": {
+      "types": "./dist/components/angepasst/badge.d.ts",
+      "default": "./dist/components/angepasst/badge.js"
+    },
+    "./card": {
+      "types": "./dist/components/angepasst/card.d.ts",
+      "default": "./dist/components/angepasst/card.js"
+    },
+    "./progress": {
+      "types": "./dist/components/angepasst/progress.d.ts",
+      "default": "./dist/components/angepasst/progress.js"
+    },
+    "./alert-dialog-simple": {
+      "types": "./dist/components/eigene/alert-dialog-simple.d.ts",
+      "default": "./dist/components/eigene/alert-dialog-simple.js"
+    },
+    "./confirmation-dialog": {
+      "types": "./dist/components/eigene/confirmation-dialog.d.ts",
+      "default": "./dist/components/eigene/confirmation-dialog.js"
+    },
+    "./date-picker-input": {
+      "types": "./dist/components/eigene/date-picker-input.d.ts",
+      "default": "./dist/components/eigene/date-picker-input.js"
+    },
+    "./month-picker-input": {
+      "types": "./dist/components/eigene/month-picker-input.d.ts",
+      "default": "./dist/components/eigene/month-picker-input.js"
+    },
+    "./searchable-select": {
+      "types": "./dist/components/eigene/searchable-select.d.ts",
+      "default": "./dist/components/eigene/searchable-select.js"
+    },
+    "./textrahmen": {
+      "types": "./dist/components/eigene/textrahmen.d.ts",
+      "default": "./dist/components/eigene/textrahmen.js"
     }
   },
   "scripts": {

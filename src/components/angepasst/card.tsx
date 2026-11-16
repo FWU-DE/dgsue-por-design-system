@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-import { cn } from '../lib/cn.ts';
+import { cn } from '../../lib/cn.ts';
 
 const cardVariants = cva('rounded-(--por-card-radius) border shadow px-4 py-3', {
   variants: {

@@ -2,12 +2,12 @@
 
 import * as React from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
-import { Popover, PopoverAnchor, PopoverContent } from './popover.tsx';
-import { Button } from './button.tsx';
-import { inputClassName } from './input.tsx';
-import { cn } from '../lib/cn.ts';
-import { assignRef } from '../lib/assign-ref.ts';
-import { MONTHS, formatMonth, isMonthBefore, parseMonth } from '../lib/date-input.ts';
+import { Popover, PopoverAnchor, PopoverContent } from '../shadcn/popover.tsx';
+import { Button } from '../shadcn/button.tsx';
+import { inputClassName } from '../shadcn/input.tsx';
+import { cn } from '../../lib/cn.ts';
+import { assignRef } from '../../lib/assign-ref.ts';
+import { MONTHS, formatMonth, isMonthBefore, parseMonth } from '../../lib/date-input.ts';
 
 type MonthPickerInputProps = Omit<React.ComponentProps<'input'>, 'type' | 'onChange' | 'value'> & {
   /** `YYYY-MM`, or `''` when empty. */
@@ -91,7 +91,7 @@ export const MonthPickerInput = React.forwardRef<HTMLInputElement, MonthPickerIn
                 if (!disabled) setOpen(true);
               }}
               disabled={disabled}
-              className={cn(inputClassName, className)}
+              className={cn(inputClassName, 'h-(--por-picker-height) md:text-(length:--por-picker-text) md:leading-(--por-picker-text-leading)', className)}
               {...props}
             />
           </div>

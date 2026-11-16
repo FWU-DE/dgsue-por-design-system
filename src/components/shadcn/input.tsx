@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { cn } from '../lib/cn.ts';
+import { cn } from '../../lib/cn.ts';
 
 /** Basis-Klassen für Texteingaben; auch von DatePickerInput und MonthPickerInput genutzt. */
 export const inputClassName =

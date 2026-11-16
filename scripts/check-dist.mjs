@@ -5,6 +5,7 @@
 //  3. Relative Imports zeigen auf .js-Dateien, die es gibt.
 //  4. Jedes Modul lässt sich in Node laden (fängt fehlende Abhängigkeiten ab).
 //  5. Keine v3-Schreibweise `utility-[--var]`, die in Tailwind v4 nicht wirkt.
+//  6. Jede Komponente hat einen Eintrag unter exports in package.json.
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -13,9 +14,18 @@ const root = resolve(import.meta.dirname, '..');
 const errors = [];
 
 const sources = [
-  ...readdirSync(join(root, 'src/components')).map((f) => `components/${f}`),
+  ...readdirSync(join(root, 'src/components'), { recursive: true }).map((f) => `components/${f}`),
   ...readdirSync(join(root, 'src/lib')).map((f) => `lib/${f}`),
 ].filter((f) => /\.tsx?$/.test(f));
+
+// 6. Jede Komponente ist in package.json exportiert (die Import-Pfade sind flach,
+//    die Ordner shadcn/, angepasst/ und eigene/ tauchen darin nicht auf).
+const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+for (const src of sources.filter((f) => f.startsWith('components/'))) {
+  const name = src.replace(/^.*\//, '').replace(/\.tsx?$/, '');
+  const target = `./dist/${src.replace(/\.tsx?$/, '.js')}`;
+  if (pkg.exports[`./${name}`]?.default !== target) errors.push(`package.json: Export ./${name} -> ${target} fehlt`);
+}
 
 for (const src of sources) {
   const base = src.replace(/\.tsx?$/, '');

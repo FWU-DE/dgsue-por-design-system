@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Command as CommandPrimitive } from 'cmdk';
 import { Search } from 'lucide-react';
 
-import { cn } from '../lib/cn.ts';
+import { cn } from '../../lib/cn.ts';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from './dialog.tsx';
 
 const Command = React.forwardRef<

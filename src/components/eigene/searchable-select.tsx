@@ -2,16 +2,16 @@
 
 import { useRef, useState } from 'react';
 import { Search } from 'lucide-react';
-import { Input } from './input.tsx';
+import { Input } from '../shadcn/input.tsx';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './select.tsx';
-import { cn } from '../lib/cn.ts';
-import { matchesQuery } from '../lib/matches-query.ts';
+} from '../shadcn/select.tsx';
+import { cn } from '../../lib/cn.ts';
+import { matchesQuery } from '../../lib/matches-query.ts';
 
 export { matchesQuery };
 

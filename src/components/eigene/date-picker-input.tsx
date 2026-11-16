@@ -1,12 +1,12 @@
 'use client';
 
 import * as React from 'react';
-import { Calendar } from './calendar.tsx';
-import { inputClassName } from './input.tsx';
-import { Popover, PopoverAnchor, PopoverContent } from './popover.tsx';
-import { cn } from '../lib/cn.ts';
-import { assignRef } from '../lib/assign-ref.ts';
-import { formatDate, parseDate, startOfDay, toIsoDate } from '../lib/date-input.ts';
+import { Calendar } from '../shadcn/calendar.tsx';
+import { inputClassName } from '../shadcn/input.tsx';
+import { Popover, PopoverAnchor, PopoverContent } from '../shadcn/popover.tsx';
+import { cn } from '../../lib/cn.ts';
+import { assignRef } from '../../lib/assign-ref.ts';
+import { formatDate, parseDate, startOfDay, toIsoDate } from '../../lib/date-input.ts';
 
 type DatePickerInputProps = Omit<React.ComponentProps<'input'>, 'type' | 'onChange'> & {
   /** `YYYY-MM-DD`, or `''` when empty. */
@@ -100,7 +100,7 @@ export const DatePickerInput = React.forwardRef<HTMLInputElement, DatePickerInpu
                 if (!disabled) setOpen(true);
               }}
               disabled={disabled}
-              className={cn(inputClassName, className)}
+              className={cn(inputClassName, 'h-(--por-picker-height) md:text-(length:--por-picker-text) md:leading-(--por-picker-text-leading)', className)}
               {...props}
             />
           </div>
