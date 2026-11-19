@@ -1,6 +1,6 @@
 {
   "name": "@fwu-de/por-ui",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Gemeinsame UI-Komponenten und Design-Tokens (NRW Corporate Identity) für zielvereinbarung und nrw-nutzerverwaltung",
   "license": "UNLICENSED",
   "type": "module",
